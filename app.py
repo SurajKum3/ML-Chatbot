@@ -10,3 +10,10 @@ def filter_to_minimal_docs(docs: List[Document]) -> List[Document]:
         )
         minimal_docs.append(minimal_doc)
     return minimal_docs
+
+# Chunking
+
+def text_split(minimal_docs):
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=20)
+    texts_chunk = text_splitter.split_documents(minimal_docs)
+    return texts_chunk
