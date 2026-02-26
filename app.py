@@ -26,3 +26,11 @@ if not pc.has_index(index_name):
     pc.create_index(name=index_name, dimension=384, metric="cosine", spec=ServerlessSpec(cloud="aws", region="us-east-1"))
 
 index = pc.Index(index_name)
+
+# Load Existing Index
+
+from langchain_pinecone import PineconeVectorStore
+docsearch = PineconeVectorStore.from_existing_index(
+    embedding=embeddings,
+    index_name=index_name
+)
