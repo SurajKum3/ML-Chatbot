@@ -34,3 +34,9 @@ docsearch = PineconeVectorStore.from_existing_index(
     embedding=embeddings,
     index_name=index_name
 )
+
+# question_answer_chain = RunnablePassthrough() | prompt | chatModel | StrOutputParser()
+rag_chain = {
+   "context": retriever,
+   "input": RunnablePassthrough()
+} | prompt | chatModel | StrOutputParser()
