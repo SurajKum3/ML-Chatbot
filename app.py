@@ -40,3 +40,19 @@ rag_chain = {
    "context": retriever,
    "input": RunnablePassthrough()
 } | prompt | chatModel | StrOutputParser()
+
+
+system_prompt = (
+    "You are an Machine Learning assistant for question-answering tasks. "
+    "Use the following pieces of retrieved context to answer "
+    "the question. If you don't know the answer, say that you "
+    "don't know. Use three sentences maximum and keep the "
+    "answer concise."
+    "\n\n"
+    "{context}"
+)
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", system_prompt),
+    ("human", "{input}")
+])
